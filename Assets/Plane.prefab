@@ -112,6 +112,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b1e35d519b1451aac35a71d9d696c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinates:
+    x: 0
+    z: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  neighbors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &-5301936757025831913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,3 +135,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9af50b574134187b12f22c0a70e3133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vertices: []

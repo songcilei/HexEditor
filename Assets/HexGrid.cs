@@ -58,6 +58,12 @@ public class HexGrid : MonoBehaviour
         Debug.Log("touched at :"+coordinates.ToString());
     }
 
+    /// <summary>
+    /// 这里当x z 分别指的是行列 当index  和 hexblock当坐标编号没关系
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="z"></param>
+    /// <param name="i"></param>
     void CreateCell(int x,int z,int i)
     {
         Vector3 position;
@@ -73,6 +79,32 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x,z);
         cell.color = defaultColor;//增加颜色
+        //-------------------------------------------------Neighbors
+        if (x>0)//这里x是 x index  不是 x 坐标
+        {
+            cell.SetNeighbor(HexDirection.W,cells[i-1]);
+        }
+
+        if (z>0)
+        {
+            if ((z&1)==0)//这里Z&1 是位运算符 用于求奇数列
+            {
+                cell.SetNeighbor(HexDirection.SE,cells[i-width]);
+                if (x>0)
+                {
+                    cell.SetNeighbor(HexDirection.SW,cells[i-width-1]);
+                }
+            }
+            else //这里是求偶数
+            {
+                cell.SetNeighbor(HexDirection.SW,cells[i-width]);
+                if (x < width -1)
+                {
+                    cell.SetNeighbor(HexDirection.SE,cells[i-width+1]);
+                }
+            }
+        }
+
         //-------------------------------------------------UI Start
         Text label = Instantiate<Text>(cellLabelPrefab);
         label.rectTransform.SetParent(gridCanvas.transform, false);
